@@ -99,12 +99,7 @@ pipeline {
             steps {
                 sshagent(['jenkins-aws-ssh-key-conn']) {
                     script {
-
-                        ssh """
-                        
-                         scp  -o StrictHostKeyChecking=no target/*.jar ubuntu@43.204.111.79:/home/ubuntu
-
-                        """
+                        ssh 'scp  -o StrictHostKeyChecking=no target/*.jar 43.204.111.79:/home/ubuntu/'
                     }
                 }
             }
