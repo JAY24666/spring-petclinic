@@ -94,5 +94,41 @@ pipeline {
             }
         }
 
+        stage("Deploy app to AWS"){
+
+            steps {
+                sshagent(['jenkins-aws-ssh-key-conn']) {
+                    script {
+
+                        ssh """
+                        
+                         scp  -o StrictHostKeyChecking=no target/*.jar ubuntu@43.204.111.79:/home/ubuntu
+
+                        """
+                    }
+                }
+            }
+        }
+
+        // stage('Deploy to On-Prem') {
+        //     steps {
+        //         sshagent(credentials: ['onprem-ssh-key']) {
+        //             script {
+        //                 def versionedJar = jarFile.tokenize('/').last()  // e.g., spring-petclinic-3.4.0-SNAPSHOT.jar
+        //                 def deployPath = "/opt/petclinic"
+
+        //                 sh """
+        //                     scp -o StrictHostKeyChecking=no ${jarFile} user@onprem-server:${deployPath}/${versionedJar}
+        //                     ssh -o StrictHostKeyChecking=no user@onprem-server '
+        //                         ln -sf ${deployPath}/${versionedJar} ${deployPath}/spring-petclinic.jar
+        //                         sudo systemctl daemon-reload
+        //                         sudo systemctl restart petclinic
+        //                     '
+        //                 """
+        //             }
+        //         }
+        //     }
+        // }
+
     }
 }
