@@ -1,0 +1,13 @@
+[Unit]
+Description=Spring Boot Petclinic Service
+After=network.target
+
+[Service]
+User=ubuntu
+ExecStart=/usr/bin/java -jar /opt/petclinic/spring-petclinic.jar
+SuccessExitStatus=143
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
