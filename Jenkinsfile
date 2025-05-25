@@ -13,7 +13,7 @@ pipeline {
         stage("Running test cases"){
             steps{
 
-                sh ",/mvnw test"
+                sh "./mvnw test"
             }
         }
 
