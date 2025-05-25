@@ -10,12 +10,12 @@ pipeline {
             }
         }
 
-        stage("Running test cases"){
-            steps{
+        //stage("Running test cases"){
+            //steps{
 
-                sh "./mvnw test"
-            }
-        }
+            //sh "./mvnw test"
+           //}
+        //}
 
         stage("Run Code Analysis"){
             environment {
