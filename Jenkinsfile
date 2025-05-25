@@ -10,6 +10,13 @@ pipeline {
             }
         }
 
+        stage("Running test cases"){
+            steps{
+
+                sh ",/mvnw test"
+            }
+        }
+
         stage("Run Code Analysis"){
             environment {
                 SCANNER_HOME = tool 'SonarScanner'
