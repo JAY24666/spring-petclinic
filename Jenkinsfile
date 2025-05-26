@@ -41,7 +41,7 @@ pipeline {
 
         }
 
-        tage('Upload Artifact to Nexus') {
+        stage('Upload Artifact to Nexus') {
             steps {
                 script {
                     // Extract version from pom.xml
