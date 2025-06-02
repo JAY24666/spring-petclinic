@@ -19,8 +19,8 @@ pipeline {
 
                 withSonarQubeEnv('Sonarserver') {
                    sh '''$SCANNER_HOME/bin/sonar-scanner \
-                       -Dsonar.projectKey=myPETC \
-                       -Dsonar.projectName=mypetclinc \
+                       -Dsonar.projectKey=myPET \
+                       -Dsonar.projectName=mypet \
                        -Dsonar.sources=. \
                        -Dsonar.java.binaries=target/classes \
                        -Dsonar.exclusions=src/test/java/****/*.java \
@@ -79,6 +79,14 @@ pipeline {
                             ]
                         ]
                     )
+                }
+            }
+        }
+
+         stage("Deploy app to AWS") {
+            steps {
+                sshagent(['jenkins-aws-ssh-key-conn']) {
+                    sh 'scp -o StrictHostKeyChecking=no target/*.jar ubuntu@54.235.20.51:/home/ubuntu/'
                 }
             }
         }
