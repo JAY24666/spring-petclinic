@@ -83,13 +83,13 @@ pipeline {
             }
         }
 
-        //  stage("Deploy app to AWS") {
-        //     steps {
-        //         sshagent(['jenkins-aws-ssh-key-conn']) {
-        //             sh 'scp -o StrictHostKeyChecking=no target/*.jar ubuntu@54.147.177.63:/home/ubuntu/'
-        //         }
-        //     }
-        // }
+             stage("Deploy app to AWS") {
+                steps {
+                 sshagent(['jenkins-aws-ssh-key-conn']) {
+                    sh 'scp -o StrictHostKeyChecking=no target/*.jar ubuntu@54.147.177.63:/home/ubuntu/'
+                }
+             }
+         }
 
     }
  }
